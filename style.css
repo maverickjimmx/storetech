@@ -17,7 +17,7 @@ body {
     background-color: var(--bg-dark);
     color: var(--text-light);
     line-height: 1.6;
-    overflow-x: hidden; /* Prevents horizontal scrolling on mobile */
+    overflow-x: hidden;
 }
 
 /* --- PRELOADER --- */
@@ -35,7 +35,14 @@ body {
     transition: opacity 0.5s ease, visibility 0.5s;
 }
 
+.loader-content { text-align: center; width: 300px; }
+.loader-logo { font-family: 'Orbitron', sans-serif; color: var(--primary); margin-bottom: 20px; letter-spacing: 5px; }
+.loader-bar { width: 100%; height: 4px; background: #1a1a1a; position: relative; border: 1px solid rgba(0, 243, 255, 0.3); }
+.loader-progress { position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: var(--primary); animation: loading 2s forwards; }
+.loader-text { font-family: monospace; font-size: 0.8rem; color: var(--primary); margin-top: 15px; }
 .loader-hidden { opacity: 0; visibility: hidden; }
+
+@keyframes loading { 0% { left: -100%; } 100% { left: 0; } }
 
 /* --- NAVIGATION --- */
 .navbar {
@@ -50,13 +57,14 @@ body {
     z-index: 1000;
 }
 
-.nav-links {
-    display: flex;
-    list-style: none;
-    gap: 20px;
-}
+.logo { font-family: 'Orbitron', sans-serif; font-size: 1.5rem; color: var(--primary); font-weight: 700; }
+.logo span { color: var(--secondary); }
 
-/* --- RESPONSIVE HERO SECTION --- */
+.nav-links { display: flex; list-style: none; gap: 20px; align-items: center; }
+.nav-links a { text-decoration: none; color: var(--text-light); text-transform: uppercase; font-size: 0.9rem; transition: var(--transition); }
+.nav-links a:hover { color: var(--primary); text-shadow: 0 0 10px var(--primary); }
+
+/* --- HERO SECTION --- */
 .hero {
     min-height: 80vh;
     display: flex;
@@ -68,94 +76,52 @@ body {
                 url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072') center/cover;
 }
 
-.hero-content {
-    max-width: 800px;
-    width: 100%;
-}
+.hero-content { max-width: 800px; width: 100%; }
+.glitch { font-family: 'Orbitron', sans-serif; font-size: clamp(2rem, 10vw, 4.5rem); margin-bottom: 20px; color: var(--primary); }
 
-.glitch {
+.hero-btns { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 30px; }
+
+/* Buttons */
+.btn-main, .btn-sub, .btn-neon {
+    padding: 12px 25px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 700;
+    border: 2px solid var(--primary);
+    transition: var(--transition);
     font-family: 'Orbitron', sans-serif;
-    font-size: clamp(2rem, 10vw, 4.5rem); /* Scales based on screen size */
-    margin-bottom: 20px;
+    font-size: 0.8rem;
+    cursor: pointer;
 }
 
-.hero-btns {
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-    flex-wrap: wrap; /* Allows buttons to stack on small screens */
-}
+.btn-main, .btn-neon { background: var(--primary); color: var(--bg-dark); }
+.btn-sub { color: var(--primary); background: transparent; }
+.btn-main:hover, .btn-neon:hover { background: transparent; color: var(--primary); box-shadow: 0 0 15px var(--primary); }
 
-/* --- RESPONSIVE GRIDS --- */
+/* --- TICKER --- */
+.ticker-wrap { background: #111; padding: 15px 0; border-bottom: 1px solid var(--primary); overflow: hidden; }
+.ticker { display: flex; white-space: nowrap; animation: ticker 40s linear infinite; }
+.ticker-item { padding: 0 40px; color: var(--primary); font-family: monospace; font-weight: bold; }
+
+@keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
+
+/* --- SECTIONS & GRIDS --- */
+.sectors, .portfolio-section, .contact-terminal { padding: 80px 5%; }
+.section-title { text-align: center; font-family: 'Orbitron', sans-serif; font-size: 2.2rem; color: var(--secondary); margin-bottom: 60px; letter-spacing: 3px; }
+
 .grid, .portfolio-grid {
     display: grid;
-    /* This rule makes the columns adjust automatically */
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-    gap: 25px;
-    padding: 20px 0;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
 }
 
-.sectors, .portfolio-section, .contact-terminal {
-    padding: 60px 5%;
-}
+/* Cards */
+.card { background: #151518; padding: 40px; border: 1px solid #333; transition: var(--transition); }
+.card h3 { color: var(--primary); font-family: 'Orbitron', sans-serif; margin-bottom: 15px; }
+.card ul { list-style: none; margin-top: 15px; color: var(--primary); font-size: 0.9rem; }
+.card:hover { border-color: var(--primary); transform: translateY(-5px); }
 
-/* --- CONTACT TERMINAL RESPONSIVENESS --- */
-.terminal-box {
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 30px;
-    border: 1px solid var(--primary);
-    background: #111;
-}
-
-.terminal-box form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-/* --- MEDIA QUERIES FOR SPECIFIC DEVICES --- */
-
-/* Tablet and Smaller (992px and down) */
-@media (max-width: 992px) {
-    .section-title { font-size: 2rem; }
-}
-
-/* Mobile Devices (768px and down) */
-@media (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .nav-links {
-        font-size: 0.8rem;
-        gap: 15px;
-    }
-
-    .hero {
-        height: auto;
-        padding: 100px 20px;
-    }
-
-    .hero-content p {
-        font-size: 1rem;
-    }
-
-    .terminal-box {
-        padding: 20px;
-    }
-}
-
-/* Small Mobile (480px and down) */
-@media (max-width: 480px) {
-    .hero-btns {
-        flex-direction: column;
-    }
-    
-    .btn-main, .btn-sub {
-        width: 100%;
-        text-align: center;
-    }
-}
+/* --- PORTFOLIO FIXES --- */
+.portfolio-item {
+    background: #151518;
+    border: 1px solid #
