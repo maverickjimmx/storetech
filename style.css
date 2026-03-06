@@ -3,7 +3,6 @@
     --secondary: #ff0055;
     --bg-dark: #0a0a0c;
     --text-light: #e0e0e0;
-    --transition: all 0.3s ease;
 }
 
 * {
@@ -16,98 +15,128 @@ body {
     font-family: 'Rajdhani', sans-serif;
     background-color: var(--bg-dark);
     color: var(--text-light);
-    line-height: 1.6;
     overflow-x: hidden;
 }
 
-/* --- NAVIGATION --- */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 5%;
-    background: rgba(10, 10, 12, 0.95);
-    border-bottom: 2px solid var(--primary);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+/* --- PORTFOLIO ALIGNMENT FIX --- */
+.portfolio-section {
+    padding: 60px 5%;
+    width: 100%;
 }
-
-.logo { font-family: 'Orbitron', sans-serif; font-size: 1.5rem; color: var(--primary); font-weight: 700; }
-.logo span { color: var(--secondary); }
-
-.nav-links { display: flex; list-style: none; gap: 20px; align-items: center; }
-.nav-links a { text-decoration: none; color: var(--text-light); text-transform: uppercase; font-size: 0.9rem; transition: var(--transition); }
-
-/* --- HERO SECTION --- */
-.hero {
-    height: 80vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
-                url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072') center/cover;
-}
-
-.glitch { font-family: 'Orbitron', sans-serif; font-size: clamp(2rem, 8vw, 4.5rem); color: var(--primary); }
-
-/* --- PORTFOLIO SECTION (THE FIX) --- */
-.portfolio-section { padding: 80px 5%; }
 
 .portfolio-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 40px; /* Increased gap to prevent crowding */
+    display: flex; /* Switched from Grid to Flex for better control */
+    flex-wrap: wrap; 
+    gap: 30px;
+    justify-content: center;
+    width: 100%;
 }
 
 .portfolio-item {
-    background: #151518;
+    flex: 1 1 350px; /* Forces items to be at least 350px wide */
+    max-width: 450px;
+    background: #111;
     border: 1px solid #333;
     display: flex;
-    flex-direction: column; /* Forces vertical stacking of image and text */
-    height: 100%;
+    flex-direction: column;
+    overflow: hidden;
 }
 
 .image-container {
-    position: relative;
     width: 100%;
-    aspect-ratio: 16 / 9; /* Keeps images consistent */
-    overflow: hidden;
+    height: 250px; /* Fixed height to keep them aligned */
+    position: relative;
     background: #000;
 }
 
 .image-container img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Prevents image distortion */
+    object-fit: cover; /* This stops the "stretched" look in your photo */
 }
 
-/* Text on top of image */
 .overlay {
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
     padding: 15px;
-    background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
-    pointer-events: none;
+    background: linear-gradient(transparent, rgba(0,0,0,0.9));
 }
 
-.overlay h4 { font-family: 'Orbitron', sans-serif; color: var(--primary); font-size: 1rem; }
-.overlay p { font-size: 0.8rem; color: #bbb; }
-
-/* The Bottom Stats Bar */
 .item-stats {
-    padding: 15px;
-    background: #111;
-    border-top: 1px solid #333;
+    padding: 12px;
+    background: #050505;
     display: flex;
     justify-content: space-between;
-    font-size: 0.75rem;
-    font-family: monospace;
+    border-top: 1px solid #222;
+    font-size: 0.7rem;
     color: var(--primary);
+    font-family: monospace;
 }
 
-/* --- CONTACT TERMINAL (THE FIX) --- */
-.contact-terminal { padding: 80px 5%; display: flex;
+/* --- INITIALIZE DEPLOYMENT FIX (THE FORM) --- */
+.contact-terminal {
+    padding: 80px 5%;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.terminal-box {
+    width: 100%;
+    max-width: 650px; /* Limits width so it doesn't stretch too far */
+    background: #0d0d0f;
+    padding: 40px;
+    border: 1px solid var(--primary);
+}
+
+.terminal-box h2 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--primary);
+    margin-bottom: 30px;
+}
+
+/* Forces the form to stack vertically */
+.terminal-box form {
+    display: flex;
+    flex-direction: column; 
+    width: 100%;
+}
+
+/* Ensures every input takes up its own row */
+.terminal-box input, 
+.terminal-box select, 
+.terminal-box textarea {
+    display: block;
+    width: 100%; 
+    margin-bottom: 20px; /* Adds space between them */
+    background: #000;
+    border: 1px solid #333;
+    padding: 15px;
+    color: var(--primary);
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.terminal-box textarea {
+    height: 120px;
+    resize: none;
+}
+
+.btn-neon {
+    width: 100%;
+    padding: 15px;
+    background: var(--primary);
+    color: #000;
+    border: none;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-neon:hover {
+    box-shadow: 0 0 20px var(--primary);
+    filter: brightness(1.2);
+}
