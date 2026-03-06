@@ -18,125 +18,151 @@ body {
     overflow-x: hidden;
 }
 
-/* --- PORTFOLIO ALIGNMENT FIX --- */
-.portfolio-section {
-    padding: 60px 5%;
-    width: 100%;
-}
-
-.portfolio-grid {
-    display: flex; /* Switched from Grid to Flex for better control */
-    flex-wrap: wrap; 
-    gap: 30px;
-    justify-content: center;
-    width: 100%;
-}
-
-.portfolio-item {
-    flex: 1 1 350px; /* Forces items to be at least 350px wide */
-    max-width: 450px;
-    background: #111;
-    border: 1px solid #333;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-}
-
-.image-container {
-    width: 100%;
-    height: 250px; /* Fixed height to keep them aligned */
-    position: relative;
-    background: #000;
-}
-
-.image-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* This stops the "stretched" look in your photo */
-}
-
-.overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 15px;
-    background: linear-gradient(transparent, rgba(0,0,0,0.9));
-}
-
-.item-stats {
-    padding: 12px;
-    background: #050505;
+/* --- NAVIGATION FIX --- */
+.navbar {
     display: flex;
     justify-content: space-between;
-    border-top: 1px solid #222;
-    font-size: 0.7rem;
-    color: var(--primary);
-    font-family: monospace;
+    align-items: center;
+    padding: 20px 5%;
+    background: rgba(10, 10, 12, 0.98);
+    border-bottom: 2px solid var(--primary);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
-/* --- INITIALIZE DEPLOYMENT FIX (THE FORM) --- */
-.contact-terminal {
-    padding: 80px 5%;
+.logo { 
+    font-family: 'Orbitron', sans-serif; 
+    font-size: 1.5rem; 
+    color: var(--primary); 
+    font-weight: 700; 
+}
+
+.nav-links { 
+    display: flex; 
+    list-style: none; 
+    gap: 25px; 
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-light);
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+/* --- HERO (TOP SECTION) FIX --- */
+.hero {
+    height: 90vh;
     display: flex;
     justify-content: center;
-    width: 100%;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072') center/cover no-repeat;
 }
 
-.terminal-box {
-    width: 100%;
-    max-width: 650px; /* Limits width so it doesn't stretch too far */
-    background: #0d0d0f;
-    padding: 40px;
-    border: 1px solid var(--primary);
+.hero-content {
+    max-width: 900px;
 }
 
-.terminal-box h2 {
-    font-family: 'Orbitron', sans-serif;
-    color: var(--primary);
-    margin-bottom: 30px;
+.hero-content p {
+    margin: 20px 0;
+    font-size: 1.2rem;
+    color: #ccc;
 }
 
-/* Forces the form to stack vertically */
-.terminal-box form {
+.hero-btns {
     display: flex;
-    flex-direction: column; 
-    width: 100%;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 30px;
 }
 
-/* Ensures every input takes up its own row */
-.terminal-box input, 
-.terminal-box select, 
-.terminal-box textarea {
-    display: block;
-    width: 100%; 
-    margin-bottom: 20px; /* Adds space between them */
-    background: #000;
-    border: 1px solid #333;
-    padding: 15px;
-    color: var(--primary);
-    font-size: 1rem;
-    font-family: inherit;
+/* --- CORE SECTORS (MIDDLE SECTION) FIX --- */
+.sectors {
+    padding: 100px 5%;
 }
 
-.terminal-box textarea {
-    height: 120px;
-    resize: none;
-}
-
-.btn-neon {
-    width: 100%;
-    padding: 15px;
-    background: var(--primary);
-    color: #000;
-    border: none;
+.section-title {
     font-family: 'Orbitron', sans-serif;
-    font-weight: bold;
-    cursor: pointer;
+    font-size: 2rem;
+    color: var(--secondary);
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.card {
+    background: #111;
+    padding: 35px;
+    border: 1px solid #222;
     transition: 0.3s;
 }
 
-.btn-neon:hover {
-    box-shadow: 0 0 20px var(--primary);
-    filter: brightness(1.2);
+.card:hover {
+    border-color: var(--primary);
+    transform: translateY(-5px);
+}
+
+.card h3 {
+    color: var(--primary);
+    font-family: 'Orbitron', sans-serif;
+    margin-bottom: 15px;
+}
+
+.card ul {
+    list-style: none;
+    margin-top: 15px;
+}
+
+.card li {
+    padding: 5px 0;
+    color: #aaa;
+    font-size: 0.9rem;
+}
+
+/* --- BUTTON STYLES --- */
+.btn-main, .btn-sub, .btn-neon {
+    padding: 12px 28px;
+    text-decoration: none;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    transition: 0.3s;
+    display: inline-block;
+}
+
+.btn-main, .btn-neon { background: var(--primary); color: #000; border: 2px solid var(--primary); }
+.btn-sub { border: 2px solid var(--primary); color: var(--primary); }
+
+.btn-main:hover, .btn-neon:hover { background: transparent; color: var(--primary); box-shadow: 0 0 15px var(--primary); }
+
+/* --- PORTFOLIO & TERMINAL (RETAINING WORKING FIXES) --- */
+.portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+.portfolio-item { background: #111; border: 1px solid #333; display: flex; flex-direction: column; }
+.image-container { width: 100%; height: 250px; position: relative; overflow: hidden; }
+.image-container img { width: 100%; height: 100%; object-fit: cover; }
+
+.terminal-box { width: 100%; max-width: 700px; margin: 0 auto; background: #050505; padding: 40px; border: 1px solid var(--primary); }
+.terminal-box form { display: flex; flex-direction: column; gap: 20px; }
+.terminal-box input, .terminal-box select, .terminal-box textarea { width: 100%; background: #000; border: 1px solid #333; padding: 15px; color: var(--primary); }
+
+/* --- PRELOADER (STILL REQUIRED) --- */
+#preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-dark); display: flex; justify-content: center; align-items: center; z-index: 9999; transition: 0.5s; }
+.loader-hidden { opacity: 0; visibility: hidden; }
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .navbar { flex-direction: column; gap: 15px; }
+    .hero { height: auto; padding: 120px 20px; }
+    .hero-btns { flex-direction: column; }
 }
