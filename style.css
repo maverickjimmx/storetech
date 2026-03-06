@@ -20,30 +20,6 @@ body {
     overflow-x: hidden;
 }
 
-/* --- PRELOADER --- */
-#preloader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--bg-dark);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    transition: opacity 0.5s ease, visibility 0.5s;
-}
-
-.loader-content { text-align: center; width: 300px; }
-.loader-logo { font-family: 'Orbitron', sans-serif; color: var(--primary); margin-bottom: 20px; letter-spacing: 5px; }
-.loader-bar { width: 100%; height: 4px; background: #1a1a1a; position: relative; border: 1px solid rgba(0, 243, 255, 0.3); }
-.loader-progress { position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: var(--primary); animation: loading 2s forwards; }
-.loader-text { font-family: monospace; font-size: 0.8rem; color: var(--primary); margin-top: 15px; }
-.loader-hidden { opacity: 0; visibility: hidden; }
-
-@keyframes loading { 0% { left: -100%; } 100% { left: 0; } }
-
 /* --- NAVIGATION --- */
 .navbar {
     display: flex;
@@ -62,66 +38,76 @@ body {
 
 .nav-links { display: flex; list-style: none; gap: 20px; align-items: center; }
 .nav-links a { text-decoration: none; color: var(--text-light); text-transform: uppercase; font-size: 0.9rem; transition: var(--transition); }
-.nav-links a:hover { color: var(--primary); text-shadow: 0 0 10px var(--primary); }
 
 /* --- HERO SECTION --- */
 .hero {
-    min-height: 80vh;
+    height: 80vh;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 40px 20px;
     background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
                 url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072') center/cover;
 }
 
-.hero-content { max-width: 800px; width: 100%; }
-.glitch { font-family: 'Orbitron', sans-serif; font-size: clamp(2rem, 10vw, 4.5rem); margin-bottom: 20px; color: var(--primary); }
+.glitch { font-family: 'Orbitron', sans-serif; font-size: clamp(2rem, 8vw, 4.5rem); color: var(--primary); }
 
-.hero-btns { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 30px; }
+/* --- PORTFOLIO SECTION (THE FIX) --- */
+.portfolio-section { padding: 80px 5%; }
 
-/* Buttons */
-.btn-main, .btn-sub, .btn-neon {
-    padding: 12px 25px;
-    text-decoration: none;
-    text-transform: uppercase;
-    font-weight: 700;
-    border: 2px solid var(--primary);
-    transition: var(--transition);
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.8rem;
-    cursor: pointer;
-}
-
-.btn-main, .btn-neon { background: var(--primary); color: var(--bg-dark); }
-.btn-sub { color: var(--primary); background: transparent; }
-.btn-main:hover, .btn-neon:hover { background: transparent; color: var(--primary); box-shadow: 0 0 15px var(--primary); }
-
-/* --- TICKER --- */
-.ticker-wrap { background: #111; padding: 15px 0; border-bottom: 1px solid var(--primary); overflow: hidden; }
-.ticker { display: flex; white-space: nowrap; animation: ticker 40s linear infinite; }
-.ticker-item { padding: 0 40px; color: var(--primary); font-family: monospace; font-weight: bold; }
-
-@keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
-
-/* --- SECTIONS & GRIDS --- */
-.sectors, .portfolio-section, .contact-terminal { padding: 80px 5%; }
-.section-title { text-align: center; font-family: 'Orbitron', sans-serif; font-size: 2.2rem; color: var(--secondary); margin-bottom: 60px; letter-spacing: 3px; }
-
-.grid, .portfolio-grid {
+.portfolio-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px; /* Increased gap to prevent crowding */
 }
 
-/* Cards */
-.card { background: #151518; padding: 40px; border: 1px solid #333; transition: var(--transition); }
-.card h3 { color: var(--primary); font-family: 'Orbitron', sans-serif; margin-bottom: 15px; }
-.card ul { list-style: none; margin-top: 15px; color: var(--primary); font-size: 0.9rem; }
-.card:hover { border-color: var(--primary); transform: translateY(-5px); }
-
-/* --- PORTFOLIO FIXES --- */
 .portfolio-item {
     background: #151518;
-    border: 1px solid #
+    border: 1px solid #333;
+    display: flex;
+    flex-direction: column; /* Forces vertical stacking of image and text */
+    height: 100%;
+}
+
+.image-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9; /* Keeps images consistent */
+    overflow: hidden;
+    background: #000;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Prevents image distortion */
+}
+
+/* Text on top of image */
+.overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+    pointer-events: none;
+}
+
+.overlay h4 { font-family: 'Orbitron', sans-serif; color: var(--primary); font-size: 1rem; }
+.overlay p { font-size: 0.8rem; color: #bbb; }
+
+/* The Bottom Stats Bar */
+.item-stats {
+    padding: 15px;
+    background: #111;
+    border-top: 1px solid #333;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    font-family: monospace;
+    color: var(--primary);
+}
+
+/* --- CONTACT TERMINAL (THE FIX) --- */
+.contact-terminal { padding: 80px 5%; display: flex;
