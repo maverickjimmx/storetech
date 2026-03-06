@@ -1,6 +1,6 @@
 :root {
-    --primary: #00f3ff; /* Cyan Neon */
-    --secondary: #ff0055; /* Pink/Red Neon */
+    --primary: #00f3ff;
+    --secondary: #ff0055;
     --bg-dark: #0a0a0c;
     --text-light: #e0e0e0;
     --transition: all 0.3s ease;
@@ -12,279 +12,15 @@
     box-sizing: border-box;
 }
 
-html { scroll-behavior: smooth; }
-
 body {
     font-family: 'Rajdhani', sans-serif;
     background-color: var(--bg-dark);
     color: var(--text-light);
     line-height: 1.6;
-    overflow-x: hidden;
+    overflow-x: hidden; /* Prevents horizontal scrolling on mobile */
 }
 
-/* Navbar */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 5%;
-    background: rgba(10, 10, 12, 0.9);
-    border-bottom: 2px solid var(--primary);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-.logo {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--primary);
-}
-
-.logo span { color: var(--secondary); }
-
-.nav-links {
-    display: flex;
-    list-style: none;
-    gap: 30px;
-    align-items: center;
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: var(--text-light);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 0.9rem;
-    transition: var(--transition);
-}
-
-.nav-links a:hover { color: var(--primary); text-shadow: 0 0 10px var(--primary); }
-
-/* Hero Section */
-.hero {
-    height: 80vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
-                url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072');
-    background-size: cover;
-    background-position: center;
-    padding: 0 20px;
-}
-
-.hero-content {
-    max-width: 900px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.glitch {
-    font-family: 'Orbitron', sans-serif;
-    font-size: clamp(2.5rem, 8vw, 5rem);
-    color: var(--primary);
-    margin-bottom: 20px;
-    text-transform: uppercase;
-}
-
-.hero-content p {
-    font-size: 1.2rem;
-    max-width: 700px;
-    margin: 0 auto 40px;
-    color: #bbb;
-    text-align: center;
-}
-
-.hero-btns {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-}
-
-.btn-main, .btn-sub, .btn-neon {
-    padding: 12px 25px;
-    text-decoration: none;
-    text-transform: uppercase;
-    font-weight: 700;
-    border: 2px solid var(--primary);
-    transition: var(--transition);
-    cursor: pointer;
-    font-family: 'Orbitron', sans-serif;
-}
-
-.btn-main, .btn-neon { background: var(--primary); color: var(--bg-dark); }
-.btn-sub { color: var(--primary); background: transparent; }
-
-.btn-main:hover, .btn-neon:hover { background: transparent; color: var(--primary); box-shadow: 0 0 15px var(--primary); }
-
-/* Ticker */
-.ticker-wrap {
-    background: #111;
-    padding: 15px 0;
-    border-bottom: 1px solid var(--primary);
-    overflow: hidden;
-}
-
-.ticker {
-    display: flex;
-    white-space: nowrap;
-    animation: ticker 40s linear infinite;
-}
-
-.ticker-item {
-    padding: 0 40px;
-    color: var(--primary);
-    font-family: monospace;
-    font-weight: bold;
-}
-
-@keyframes ticker {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-100%); }
-}
-
-/* Portfolio Section Fixes */
-.portfolio-section {
-    padding: 100px 5%;
-}
-
-.section-title {
-    text-align: center;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 2.2rem;
-    color: var(--secondary);
-    margin-bottom: 60px;
-    letter-spacing: 3px;
-}
-
-.portfolio-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 30px;
-}
-
-.portfolio-item {
-    background: #151518;
-    border: 1px solid #333;
-    transition: var(--transition);
-}
-
-.image-container {
-    position: relative;
-    height: 250px;
-    overflow: hidden;
-}
-
-.image-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: grayscale(40%);
-    transition: var(--transition);
-}
-
-.overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 20px;
-    background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
-}
-
-.overlay h4 { font-family: 'Orbitron', sans-serif; color: var(--primary); }
-.overlay p { font-size: 0.85rem; color: #ccc; }
-
-.item-stats {
-    padding: 15px 20px;
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.75rem;
-    font-weight: bold;
-    color: var(--primary);
-    border-top: 1px solid #333;
-    font-family: monospace;
-}
-
-.portfolio-item:hover { border-color: var(--primary); transform: translateY(-5px); }
-.portfolio-item:hover img { filter: grayscale(0%); transform: scale(1.05); }
-
-/* Contact Terminal Fixes */
-.contact-terminal {
-    padding: 100px 5%;
-    display: flex;
-    justify-content: center;
-}
-
-.terminal-box {
-    width: 100%;
-    max-width: 600px;
-    background: #111;
-    padding: 40px;
-    border: 1px solid var(--primary);
-    box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
-}
-
-.terminal-box h2 {
-    font-family: 'Orbitron', sans-serif;
-    color: var(--primary);
-    font-size: 1.5rem;
-    margin-bottom: 30px;
-    text-align: center;
-}
-
-.terminal-box form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.terminal-box input, 
-.terminal-box select, 
-.terminal-box textarea {
-    background: #000;
-    border: 1px solid #333;
-    padding: 15px;
-    color: var(--primary);
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 1rem;
-    outline: none;
-}
-
-.terminal-box input:focus, 
-.terminal-box textarea:focus {
-    border-color: var(--primary);
-}
-
-.terminal-box textarea {
-    height: 120px;
-    resize: none;
-}
-
-/* Footer */
-footer {
-    padding: 60px 5%;
-    text-align: center;
-    border-top: 1px solid var(--primary);
-    background: #050505;
-    font-size: 0.8rem;
-    color: #666;
-}
-
-footer .status { color: #00ff00; }
-
-/* Mobile Adaptations */
-@media (max-width: 768px) {
-    .nav-links { display: none; }
-    .hero-btns { flex-direction: column; width: 100%; }
-    .terminal-box { padding: 20px; }
-}
-
-/* Preloader Styles */
+/* --- PRELOADER --- */
 #preloader {
     position: fixed;
     top: 0;
@@ -296,66 +32,130 @@ footer .status { color: #00ff00; }
     justify-content: center;
     align-items: center;
     z-index: 9999;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.5s ease, visibility 0.5s;
 }
 
-.loader-content {
-    text-align: center;
-    width: 300px;
-}
+.loader-hidden { opacity: 0; visibility: hidden; }
 
-.loader-logo {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1.5rem;
-    color: var(--primary);
-    margin-bottom: 20px;
-    letter-spacing: 5px;
-}
-
-.loader-bar {
-    width: 100%;
-    height: 4px;
-    background: #1a1a1a;
-    position: relative;
-    overflow: hidden;
-    border: 1px solid rgba(0, 243, 255, 0.3);
-}
-
-.loader-progress {
-    position: absolute;
+/* --- NAVIGATION --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    background: rgba(10, 10, 12, 0.95);
+    border-bottom: 2px solid var(--primary);
+    position: sticky;
     top: 0;
-    left: -100%;
+    z-index: 1000;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+/* --- RESPONSIVE HERO SECTION --- */
+.hero {
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px 20px;
+    background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
+                url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072') center/cover;
+}
+
+.hero-content {
+    max-width: 800px;
     width: 100%;
-    height: 100%;
-    background: var(--primary);
-    box-shadow: 0 0 15px var(--primary);
-    animation: loading 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
-.loader-text {
-    font-family: monospace;
-    font-size: 0.8rem;
-    color: var(--primary);
-    margin-top: 15px;
-    letter-spacing: 2px;
-    animation: blink 1s infinite;
+.glitch {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(2rem, 10vw, 4.5rem); /* Scales based on screen size */
+    margin-bottom: 20px;
 }
 
-/* Animations */
-@keyframes loading {
-    0% { left: -100%; }
-    50% { left: -30%; }
-    100% { left: 0; }
+.hero-btns {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap; /* Allows buttons to stack on small screens */
 }
 
-@keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
+/* --- RESPONSIVE GRIDS --- */
+.grid, .portfolio-grid {
+    display: grid;
+    /* This rule makes the columns adjust automatically */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 25px;
+    padding: 20px 0;
 }
 
-/* Class to hide preloader via JS */
-.loader-hidden {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
+.sectors, .portfolio-section, .contact-terminal {
+    padding: 60px 5%;
+}
+
+/* --- CONTACT TERMINAL RESPONSIVENESS --- */
+.terminal-box {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 30px;
+    border: 1px solid var(--primary);
+    background: #111;
+}
+
+.terminal-box form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* --- MEDIA QUERIES FOR SPECIFIC DEVICES --- */
+
+/* Tablet and Smaller (992px and down) */
+@media (max-width: 992px) {
+    .section-title { font-size: 2rem; }
+}
+
+/* Mobile Devices (768px and down) */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav-links {
+        font-size: 0.8rem;
+        gap: 15px;
+    }
+
+    .hero {
+        height: auto;
+        padding: 100px 20px;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    .terminal-box {
+        padding: 20px;
+    }
+}
+
+/* Small Mobile (480px and down) */
+@media (max-width: 480px) {
+    .hero-btns {
+        flex-direction: column;
+    }
+    
+    .btn-main, .btn-sub {
+        width: 100%;
+        text-align: center;
+    }
 }
